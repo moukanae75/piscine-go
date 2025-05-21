@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 )
 
@@ -11,7 +10,6 @@ const (
 )
 
 func main() {
-
 	if len(os.Args) != 4 {
 		return
 	}
@@ -61,7 +59,12 @@ func main() {
 	case "/":
 
 		if num2 == 0 {
-			fmt.Println("No division by 0")
+			os.Stdout.WriteString("No division by 0\n")
+			return
+		}
+
+		if num1 < num2 {
+			os.Stdout.WriteString("0\n")
 			return
 		}
 
@@ -73,7 +76,7 @@ func main() {
 	case "%":
 
 		if num2 == 0 {
-			fmt.Println("No modulo by 0")
+			os.Stdout.WriteString("No modulo by 0\n")
 			return
 		}
 
@@ -85,6 +88,7 @@ func main() {
 	default:
 		return
 	}
+	os.Stdout.WriteString("\n")
 }
 
 func abs(n int64) int64 {
@@ -95,7 +99,6 @@ func abs(n int64) int64 {
 }
 
 func PrintNbr(n int) {
-
 	str := ""
 	last := ""
 	if n < 0 {
@@ -110,6 +113,7 @@ func PrintNbr(n int) {
 	last += str
 	os.Stdout.WriteString(last)
 }
+
 func Atoi(s string) (int, bool) {
 	nbr := 0
 	if len(s) > 0 {
